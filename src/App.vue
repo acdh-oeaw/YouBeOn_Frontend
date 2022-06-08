@@ -139,6 +139,7 @@
             content-class="intro_popUp"
             v-model="introPopUp"
           >
+          <v-card id="introCard">
             <!--<img
                 id="image"
                 src="./static/sprechblase kontur_schwarz.svg"
@@ -162,6 +163,7 @@
                 Los Geht's >>>
               </v-btn>
             </v-card-text>
+          </v-card>
           </v-dialog>
 
           <v-flex xs12 fill-height class="pa-0 ma-0">
@@ -222,17 +224,9 @@ export default class App extends Vue {
   text-decoration-color: rgb(176, 220, 217);
 }
 
-.v-card__title {
+#introCard {
   background-color: white;
   border: 5px solid rgb(176, 220, 217);
-  border-radius: 0px !important;
-  border-bottom: none;
-}
-
-.v-card__text {
-  background-color: white;
-  border: 5px solid rgb(176, 220, 217);
-  border-top: none;
   border-radius: 0px !important;
 }
 
