@@ -65,6 +65,12 @@
                       Ideen
                     </div></v-tab
                   >
+                  <v-tab
+                    @click="newTab()"
+                    >
+                    <div class="tabs_top">?</div>
+                  </v-tab
+                  >
                 </v-tabs>
               </v-col>
             </v-row>
@@ -110,6 +116,12 @@
                     Ideen
                   </div>
                 </v-list-item>
+                <v-list-item @click="newTab()"
+                    >
+                    
+                    <div class="tabs_top">Hilfe</div>
+                </v-list-item
+                  >
               </v-list-item-group>
             </v-list>
           </v-menu>
@@ -127,29 +139,29 @@
             content-class="intro_popUp"
             v-model="introPopUp"
           >
-              <!--<img
+            <!--<img
                 id="image"
                 src="./static/sprechblase kontur_schwarz.svg"
                 height="50"
                 width="50"
               />-->
-              <v-card-title id="popUp_title">Willkommen</v-card-title>
-              <v-card-text style="height: 375px">
-                {{ popUpcontent.para1 }}
-                <br />
-                <br />
-                {{ popUpcontent.para2 }}
-                <br />
-                <v-btn
-                  id="popUp_btn"
-                  color="#b0dcd9"
-                  elevation="0"
-                  width="150px"
-                  @click="introPopUp = false"
-                >
-                  Los Geht's >>>
-                </v-btn>
-              </v-card-text>
+            <v-card-title id="popUp_title">Willkommen</v-card-title>
+            <v-card-text style="height: 375px">
+              {{ popUpcontent.para1 }}
+              <br />
+              <br />
+              {{ popUpcontent.para2 }}
+              <br />
+              <v-btn
+                id="popUp_btn"
+                color="#b0dcd9"
+                elevation="0"
+                width="150px"
+                @click="introPopUp = false"
+              >
+                Los Geht's >>>
+              </v-btn>
+            </v-card-text>
           </v-dialog>
 
           <v-flex xs12 fill-height class="pa-0 ma-0">
@@ -185,6 +197,10 @@ export default class App extends Vue {
     initData().then(() => {
       this.loading = false;
     });
+  }
+
+  newTab() {
+    window.open('https://www.youbeon.eu', '_blank')
   }
 
   introPopUp = true;
