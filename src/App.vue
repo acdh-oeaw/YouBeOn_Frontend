@@ -68,7 +68,7 @@
                   <v-tab
                     @click="newTab()"
                     >
-                    <div class="tabs_top">?</div>
+                    <div class="tabs_top">FAQ</div>
                   </v-tab
                   >
                 </v-tabs>
@@ -119,7 +119,7 @@
                 <v-list-item @click="newTab()"
                     >
                     
-                    <div class="tabs_top">Hilfe</div>
+                    <div class="tabs_top">FAQ</div>
                 </v-list-item
                   >
               </v-list-item-group>
@@ -135,8 +135,8 @@
           ></div>
           <v-dialog
             overlay-opacity="0"
-            width="20vw"
-            content-class="intro_popUp"
+            width="450"
+            content-class="intro_popUp d-none d-sm-block"
             v-model="introPopUp"
           >
           <v-card id="introCard">
@@ -147,7 +147,7 @@
                 width="50"
               />-->
             <v-card-title id="popUp_title">Willkommen</v-card-title>
-            <v-card-text style="height: 375px">
+            <v-card-text>
               {{ popUpcontent.para1 }}
               <br />
               <br />
