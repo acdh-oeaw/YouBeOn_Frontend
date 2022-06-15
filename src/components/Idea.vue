@@ -811,6 +811,7 @@ export default class Idea extends Vue {
       })
       .enter()
       .append("circle")
+      .style('cursor', 'pointer')
       .attr("cx", 0)
       .attr("cy", 0)
       .attr("fill", (d) =>
@@ -840,6 +841,14 @@ export default class Idea extends Vue {
       )
       .on("click", (d, i) => {
         this.onNodeClick(i);
+      })
+      .on({
+        mouseover: function (d) {
+          d3.select(this).style("cursor", "pointer");
+        },
+        mouseout: function (d) {
+          d3.select(this).style("cursor", "default");
+        },
       });
 
     var text = groups
@@ -906,6 +915,7 @@ export default class Idea extends Vue {
           }
         }
       })
+      .style('cursor', 'pointer')
       .attr("dx", (d) =>
         d.children
           ? d.data
@@ -928,7 +938,11 @@ export default class Idea extends Vue {
             ? "2.5em"
             : 14
           : 14
-      );
+      )
+      .on("click", (d, i) => {
+        this.onNodeClick(i);
+      });
+
     // This function is run at each iteration of the force algorithm, updating the nodes position.
     simulation.on("tick", () => {
       link
@@ -979,12 +993,15 @@ export default class Idea extends Vue {
       }
     });
     this.accounts.forEach((account) => {
-      if(account.id === 327 || account.id === 339) {
-        console.log(account)
+      if (account.id === 327 || account.id === 339) {
+        console.log(account);
       }
-      console.log("AAAA", idee.data.id)
+      console.log("AAAA", idee.data.id);
       //wenn zwischen idee und account hinundhergewechselt wird werden manchmal ids durch namen ersetzt? sollte ausgebessert werden ist nur ein schneller fix
-      if (account.idee.includes(idee.data.id) || account.idee.includes(idee.data.name)) {
+      if (
+        account.idee.includes(idee.data.id) ||
+        account.idee.includes(idee.data.name)
+      ) {
         accountsWithIdea.push(account);
       }
     });
@@ -1072,9 +1089,9 @@ export default class Idea extends Vue {
         if (element.data != undefined) {
           if (element.data.name === this.$route.params.idea_name) {
             this.selectedIdea = [];
-            console.log(element)
+            console.log(element);
             let connectedInfo = this.getDataforFeature(element);
-            console.log(connectedInfo)
+            console.log(connectedInfo);
             this.ideaDetailed = {
               zitate: [...new Set(element.data.zitate)],
               name: element.data.name,

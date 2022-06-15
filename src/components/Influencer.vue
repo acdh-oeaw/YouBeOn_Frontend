@@ -858,6 +858,7 @@ export default class Influencer extends Vue {
       .append("circle")
       .attr("cx", 0)
       .attr("cy", 0)
+      .style('cursor', 'pointer')
       .attr("fill", (d) =>
         d.children ? "#B4DCD2" : d._color ? d._color : d.data._color
       )
@@ -874,6 +875,7 @@ export default class Influencer extends Vue {
       })
       .enter()
       .append("text")
+      .style('cursor', 'pointer')
       .html(function (d) {
         if (!d.children) {
           if (d.data) {
@@ -909,6 +911,9 @@ export default class Influencer extends Vue {
       })
       .style("font-size", function (d) {
         return d.children ? "2.3em" : 14;
+      })
+      .on("click", (d, i) => {
+        this.onNodeClick(d, i);
       });
 
     // This function is run at each iteration of the force algorithm, updating the nodes position.
