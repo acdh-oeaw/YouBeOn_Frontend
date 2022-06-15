@@ -65,12 +65,9 @@
                       Ideen
                     </div></v-tab
                   >
-                  <v-tab
-                    @click="newTab()"
-                    >
+                  <v-tab @click="newTab()">
                     <div class="tabs_top">FAQ</div>
-                  </v-tab
-                  >
+                  </v-tab>
                 </v-tabs>
               </v-col>
             </v-row>
@@ -116,12 +113,9 @@
                     Ideen
                   </div>
                 </v-list-item>
-                <v-list-item @click="newTab()"
-                    >
-                    
-                    <div class="tabs_top">FAQ</div>
-                </v-list-item
-                  >
+                <v-list-item @click="newTab()">
+                  <div class="tabs_top">FAQ</div>
+                </v-list-item>
               </v-list-item-group>
             </v-list>
           </v-menu>
@@ -139,31 +133,32 @@
             content-class="intro_popUp d-none d-sm-block"
             v-model="introPopUp"
           >
-          <v-card id="introCard">
-            <!--<img
-                id="image"
+            <v-card id="introCard" v-if="introPopUp">
+              <img
+                id="talkingBubble"
                 src="./static/sprechblase kontur_schwarz.svg"
-                height="50"
-                width="50"
-              />-->
-            <v-card-title id="popUp_title">Willkommen</v-card-title>
-            <v-card-text>
-              {{ popUpcontent.para1 }}
-              <br />
-              <br />
-              {{ popUpcontent.para2 }}
-              <br />
-              <v-btn
-                id="popUp_btn"
-                color="#b0dcd9"
-                elevation="0"
-                width="150px"
-                @click="introPopUp = false"
-              >
-                Los Geht's >>>
-              </v-btn>
-            </v-card-text>
-          </v-card>
+                height="60"
+                width="60"
+              />
+              <div id="whitepartPicture">Willkommen</div>
+              <v-card-title id="popUp_title">Willkommen</v-card-title>
+              <v-card-text>
+                {{ popUpcontent.para1 }}
+                <br />
+                <br />
+                {{ popUpcontent.para2 }}
+                <br />
+                <v-btn
+                  id="popUp_btn"
+                  color="#b0dcd9"
+                  elevation="0"
+                  width="150px"
+                  @click="introPopUp = false"
+                >
+                  Los Geht's >>>
+                </v-btn>
+              </v-card-text>
+            </v-card>
           </v-dialog>
 
           <v-flex xs12 fill-height class="pa-0 ma-0">
@@ -202,7 +197,7 @@ export default class App extends Vue {
   }
 
   newTab() {
-    window.open('https://www.youbeon.eu', '_blank')
+    window.open("https://www.youbeon.eu", "_blank");
   }
 
   introPopUp = true;
@@ -219,9 +214,30 @@ export default class App extends Vue {
 }
 
 #popUp_title {
-  font-weight: 600;
+  margin: 8px;
+  padding-left: 50px;
+  font-weight: 700;
+}
+
+#talkingBubble {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  z-index: 0;
+}
+
+#whitepartPicture {
+  font-weight: 700;
   text-decoration: underline;
   text-decoration-color: rgb(176, 220, 217);
+  font-size: 1.25rem;
+  position: absolute;
+  height: 30px;
+  width: 200px;
+  background-color: white;
+  top: 22px;
+  left: 35px;
+  z-index: 3;
 }
 
 #introCard {
