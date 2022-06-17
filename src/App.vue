@@ -130,10 +130,10 @@
           <v-dialog
             overlay-opacity="0"
             width="450"
-            content-class="intro_popUp d-none d-sm-block"
+            content-class="intro_popUp"
             v-model="introPopUp"
           >
-            <v-card id="introCard" v-if="introPopUp">
+            <v-card class="introCard introCardMobile" v-if="introPopUp">
               <img
                 id="talkingBubble"
                 src="./static/sprechblase kontur_schwarz.svg"
@@ -240,10 +240,16 @@ export default class App extends Vue {
   z-index: 3;
 }
 
-#introCard {
-  background-color: white;
-  border: 5px solid rgb(176, 220, 217);
+.introCard {
+  background-color: white !important;
+  border: 5px solid rgb(176, 220, 217) !important;
   border-radius: 0px !important;
+}
+
+@media only screen and (max-width: 700px) {
+  .introCardMobile {
+    width: 95%;
+  }
 }
 
 #popUp_btn {
