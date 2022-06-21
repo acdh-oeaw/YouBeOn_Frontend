@@ -381,6 +381,7 @@ export default class Place extends Vue {
   geoPlaces: any[] = [];
   placesJSON: any[] = [];
   selectedPlaces: any[] = [];
+  selectedPlacesLength = 0;
   allReligions: any[] = [];
   allIdeas: any[] = [];
   placeDetailed: any = null;
@@ -600,9 +601,8 @@ export default class Place extends Vue {
     }
 
     if(this.selectedFilter.name === "Alle Orte") {
-      if(this.selectedPlaces.length > 0) {
+      if(this.selectedPlaces.length > 0 && this.selectedPlaces.length > this.selectedPlacesLength) {
         let lastPlace = this.selectedPlaces[this.selectedPlaces.length-1]
-        console.log(lastPlace)
         this.placeDetailed = {
             idee: lastPlace.idee,
             religion: this.turnInterviewIDintoReligion(
@@ -611,6 +611,8 @@ export default class Place extends Vue {
             name: lastPlace.bezeichnung,
             bermerkung: lastPlace.bemerkung,
           };
+      } else {
+        this.placeDetailed = null
       }
       
     }
@@ -665,7 +667,7 @@ export default class Place extends Vue {
             tempSelectedPlaces[tempSelectedPlaces.length - 1] === f.properties
           );
         });
-        if (lastPlace.length > 0) {
+        if (lastPlace.length > 0 && this.selectedPlaces.length > this.selectedPlacesLength) {
           this.center = [
             lastPlace[0].geometry.coordinates[1],
             lastPlace[0].geometry.coordinates[0],
@@ -677,6 +679,7 @@ export default class Place extends Vue {
       this.zoom++;
       this.zoom--;
     });
+    this.selectedPlacesLength = this.selectedPlaces.length
   }
 
   get tileSetUrl(): string {
