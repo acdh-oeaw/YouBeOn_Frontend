@@ -996,7 +996,6 @@ export default class Idea extends Vue {
       if (account.id === 327 || account.id === 339) {
         console.log(account);
       }
-      console.log("AAAA", idee.data.id);
       //wenn zwischen idee und account hinundhergewechselt wird werden manchmal ids durch namen ersetzt? sollte ausgebessert werden ist nur ein schneller fix
       if (
         account.idee.includes(idee.data.id) ||
@@ -1237,8 +1236,7 @@ export default class Idea extends Vue {
   border: 5px solid #e4625e !important;
   position: absolute;
   max-height: 50%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  word-break: break-word;
   width: 450px;
   right: 30px;
   bottom: 30px;

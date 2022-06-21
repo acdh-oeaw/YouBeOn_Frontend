@@ -227,10 +227,12 @@ export default class App extends Vue {
 }
 
 #whitepartPicture {
-  font-weight: 700;
+  font-weight: 400;
   text-decoration: underline;
+  text-decoration-thickness: 4px;
+  font-family: "ChicagoFLF", Helvetica, Arial, sans-serif;
   text-decoration-color: rgb(176, 220, 217);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   position: absolute;
   height: 30px;
   width: 200px;

@@ -262,8 +262,9 @@ export default class Influencer extends Vue {
 
   async showNodeDetails(node) {
     const headers = { "Content-Type": "application/json" };
-    let tempInfluencerDetailed = node.data;
-    if (!isNaN(Number(tempInfluencerDetailed.kategorie[0]))) {
+    let tempInfluencerDetailed = node;
+    //Kategorie wird momentan nicht verwendet
+    /**if (!isNaN(Number(tempInfluencerDetailed.kategorie[0]))) {
       await fetch(
         "https://db.youbeon.eu/kategorie/filter/?ids=" +
           tempInfluencerDetailed.kategorie.toString(),
@@ -279,7 +280,7 @@ export default class Influencer extends Vue {
           });
           tempInfluencerDetailed.kategorie = tempKategorie;
         });
-    }
+    }**/
     if (!isNaN(Number(tempInfluencerDetailed.idee[0]))) {
       await fetch(
         "https://db.youbeon.eu/idee/filter/?ids=" +
@@ -302,9 +303,15 @@ export default class Influencer extends Vue {
 
   onNodeClick(event, node) {
     if (!node.children) {
-      this.selectedInfluencer = [node.data];
+      if (node.data != undefined) {
+        this.selectedInfluencer = [node.data];
+        this.showNodeDetails(node.data);
+      } else {
+        this.selectedInfluencer = [node];
+        this.showNodeDetails(node);
+      }
+      console.log(this.selectedInfluencer[0]);
       this.buildInfluencerNetworkObject();
-      this.showNodeDetails(node);
     } else {
       this.selectedInfluencer = [];
       this.bigNetwork = false;
@@ -694,6 +701,13 @@ export default class Influencer extends Vue {
           ) {
             searchedNode = node;
           }
+        } else {
+          if (
+            node.id ===
+            this.selectedInfluencer[this.selectedInfluencer.length - 1].id
+          ) {
+            searchedNode = node;
+          }
         }
       });
       if (searchedNode) {
@@ -858,7 +872,7 @@ export default class Influencer extends Vue {
       .append("circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .style('cursor', 'pointer')
+      .style("cursor", "pointer")
       .attr("fill", (d) =>
         d.children ? "#B4DCD2" : d._color ? d._color : d.data._color
       )
@@ -875,7 +889,7 @@ export default class Influencer extends Vue {
       })
       .enter()
       .append("text")
-      .style('cursor', 'pointer')
+      .style("cursor", "pointer")
       .html(function (d) {
         if (!d.children) {
           if (d.data) {
@@ -961,17 +975,6 @@ export default class Influencer extends Vue {
   background-color: whitesmoke;
   height: 70vh;
 }
-
-/*@media only screen and (max-width: 700px) {
-  .network_mobile {
-    background-color: white !important;
-    position: absolute !important;
-    top: 76px !important;
-    left: 0px !important;
-    z-index:0;
-    border: none !important;
-  }
-}*/
 
 .vl {
   border-left: 2px solid #e5e5e5;

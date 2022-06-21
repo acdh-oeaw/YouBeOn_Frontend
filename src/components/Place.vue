@@ -248,7 +248,7 @@
     <v-bottom-sheet
       class="detailedViewMobile"
       v-if="placeDetailed !== null"
-      v-model="placeDetetailedBoolean"
+      v-model="placeDetailedBoolean"
       hide-overlay
       no-click-animation
       persistent
@@ -400,14 +400,14 @@ export default class Place extends Vue {
     "Katholisches Christentum": ["#2366DD", "#91b3ee"], //olive
   };
 
-  get placeDetetailedBoolean() {
+  get placeDetailedBoolean() {
     if (this.placeDetailed != null) {
       return true;
     }
     return false;
   }
 
-  set placeDetetailedBoolean(value) {
+  set placeDetailedBoolean(value) {
     if (value === false) {
       this.placeDetailed = null;
     }
@@ -597,6 +597,22 @@ export default class Place extends Vue {
       tempSelectedPlaces = this.selectedPlaces;
     } else {
       tempSelectedPlaces = [this.selectedPlaces];
+    }
+
+    if(this.selectedFilter.name === "Alle Orte") {
+      if(this.selectedPlaces.length > 0) {
+        let lastPlace = this.selectedPlaces[this.selectedPlaces.length-1]
+        console.log(lastPlace)
+        this.placeDetailed = {
+            idee: lastPlace.idee,
+            religion: this.turnInterviewIDintoReligion(
+              lastPlace.religion
+            ),
+            name: lastPlace.bezeichnung,
+            bermerkung: lastPlace.bemerkung,
+          };
+      }
+      
     }
 
     this.placesJSON.forEach((place) => {
@@ -1004,6 +1020,7 @@ export default class Place extends Vue {
 }
 
 #detailedHeader {
+  word-break: break-word;
   font-family: "ChicagoFLF", Helvetica, Arial, sans-serif;
 }
 

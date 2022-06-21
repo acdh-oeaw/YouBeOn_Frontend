@@ -1,8 +1,8 @@
 <template>
   <vContainer>
     <div id="list_legy" v-if="religions.length > 0 || places.length > 0 || ideas.length > 0">
-      <div style="text-align: center; width: fill">
-        <b>Legende</b>
+      <div id="title">
+        Legende
       </div>
       <v-list class="legend_items list" dense>
         <!--<v-list-item class="legend_items" v-if="places.length > 0">
@@ -82,11 +82,20 @@ a {
 
 .legend_items {
   background-color: rgba($color: #ddeeff, $alpha: 0) !important;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#title {
+  text-align: center;
+  width: fill;
+  font-family: "ChicagoFLF", Helvetica, Arial, sans-serif;
 }
 
 #list_legy {
   background-color: rgba($color: #fff, $alpha: 0.8);
-  border: 2px solid #b0dcd9;
+  border: 5px solid #b0dcd9;
   padding: 5px;
   border-radius: 2.5px;
 }
