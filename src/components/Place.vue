@@ -329,7 +329,7 @@ import {
   LWMSTileLayer as LWmsTileLayer,
 } from "vue2-leaflet";
 import MapLegende from "./MapLegende.vue";
-import { dataStore, info_popUp } from "../store/data";
+import { dataStore } from "../store/data";
 //@ts-ignore
 import * as L from "leaflet";
 import * as _ from "lodash";
@@ -360,7 +360,6 @@ export default class Place extends Vue {
   map: any = null;
   pointerSize = 5;
 
-  popUpcontent = info_popUp;
 
   tileSets = [
     {

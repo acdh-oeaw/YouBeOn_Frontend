@@ -129,7 +129,7 @@
           ></div>
           <v-dialog
             overlay-opacity="0"
-            width="450"
+            width="500"
             content-class="intro_popUp"
             v-model="introPopUp"
           >
@@ -143,10 +143,23 @@
               <div id="whitepartPicture">Willkommen</div>
               <v-card-title id="popUp_title">Willkommen</v-card-title>
               <v-card-text>
-                {{ popUpcontent.para1 }}
+                Die YouBeOn Map nimmt Sie mit in die <b>Lebenswelten religiöser,
+                junger Menschen aus Wien.</b> Auf drei Ebenen können Sie Orte und
+                Instagram-Accounts, die den Jugendlichen wichtig sind, und die
+                damit verbundenen Ideen erkunden.
                 <br />
                 <br />
-                {{ popUpcontent.para2 }}
+                Die Daten stammen aus <b>41 Interviews mit Menschen aus sieben
+                religiösen Traditionen.</b> Die YouBeOn Map zeigt, was den
+                Teilnehmenden zum Zeitpunkt der Interviews on- und offline
+                wichtig war, welche Ideen sie verbinden und was spezifisch für
+                ihre Religionstraditionen ist.
+                <br />
+                Sie starten von der <b>Ebene der Orte.</b> Dort sehen Sie profane und
+                religiöse Orte, die unseren Interviewteilnehmer*innen wichtig
+                waren und die Ideen, die damit in Verbindung stehen. Probieren
+                Sie die YouBeOn Map einfach aus! Wenn Sie Fragen haben, schauen
+                Sie einfach bei unseren <a href="https://www.youbeon.eu/youbeon-map" target="_blank">FAQs</a> vorbei.
                 <br />
                 <v-btn
                   id="popUp_btn"
@@ -182,7 +195,6 @@
 <script lang="ts">
 import Vuetify from "vuetify";
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { info_popUp } from "./store/data";
 import { initialize as initData } from "./store/data";
 @Component({
   components: {},
@@ -197,11 +209,10 @@ export default class App extends Vue {
   }
 
   newTab() {
-    window.open("https://www.youbeon.eu", "_blank");
+    window.open("https://www.youbeon.eu/youbeon-map", "_blank");
   }
 
   introPopUp = true;
-  popUpcontent = info_popUp;
 }
 </script>
 
